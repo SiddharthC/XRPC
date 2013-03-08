@@ -1,5 +1,7 @@
 A MultiRPC implementation by modification of XML-RPC library.
 
+Files of interest - client.c, server.c, xmlrpc_client_global.c
+
 Executing the program:
 
 To run the code, following steps are to be followed:
