@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [ "$2" == "start" ] 
+then
+	if [ $1 > 0 ]
+	then
+		i=0
+		while(($i < $1))
+		do
+			x=$((8080+i))
+			./bin/server "$x" &
+			i=$((i+1)) 
+		done
+		$(touch ./bin/tmp.info)
+		echo $1 > tmp.info
+	else
+		echo "Incorrect arguments.\nPlease refer to the README file."
+	fi
+elif [ "$1" == "stop" ]
+	then
+		state=$(pidof server)
+		if [ "$state" == "" ]
+		then
+			echo "Servers not running"
+		else
+			kill -TERM $(pidof server)
+			rm tmp.info
+		fi
+else
+	echo "Incorrect arguments.\nPlease refer to the README file."
+fi
+
+exit 0
